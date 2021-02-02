@@ -8,6 +8,8 @@ This free responsive multi-language theme is a Ghost port of one of the most pop
 
 &nbsp;
 
+[View DEMO](https://terrighost.github.io/)
+
 # First time using a Ghost theme?
 
 Ghost uses a simple templating language called [Handlebars](http://handlebarsjs.com/) for its themes.
