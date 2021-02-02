@@ -2,8 +2,6 @@
 
 This free responsive multi-language theme is a Ghost port of one of the most popular fashion templates for Wordpress: Cali. It supports all the latest features of Ghali, including members and language files. It comes with a carousel, amazing typography and membership pages. Search and Disqus comments are ready to go and easily configured. Bootstrap and strict coding hygiene make customizations a breeze. Head over to the [releases](https://github.com/TerriGhost/Ghali/releases) page for the latest version.
 
-&nbsp;
-
 [View DEMO](https://terrighost.github.io/)
 
 &nbsp;
