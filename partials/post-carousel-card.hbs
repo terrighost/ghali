@@ -1,0 +1,52 @@
+<div class="post-carousel-card {{post_class}}">
+  <a class="post-carousel-card-image-link" href="{{url}}">
+    {{#if feature_image}}
+
+      {{!-- This is a responsive image, it loads different sizes depending on device
+      https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
+      <img class="post-card-image"
+          srcset="{{img_url feature_image size="s"}} 300w,
+                  {{img_url feature_image size="m"}} 600w,
+                  {{img_url feature_image size="l"}} 1000w,
+                  {{img_url feature_image size="xl"}} 2000w"
+          sizes="(max-width: 1000px) 400px, 700px"
+          loading="lazy"
+          src="{{img_url feature_image size="m"}}"
+          alt="{{title}}"
+      />
+    {{else}}
+      <img class="no-image" src="//via.placeholder.com/400x500.png?text=Placeholder" />
+    {{/if}}
+
+    <div class="post-carousel-card-overlay">
+      {{#if primary_tag}}
+        {{#primary_tag}}
+          <div class="post-carousel-card-primary-tag">{{name}}</div>
+        {{/primary_tag}}
+      {{/if}}
+
+      <h2 class="post-carousel-card-title">{{title}}</h2>
+
+      <div class="post-carousel-card-overlay-meta">
+
+        {{t "by"}}
+        <div class="post-carousel-card-author">
+        {{#foreach authors limit="3"}}
+          {{#if @last}}
+            {{name}}
+          {{else}}
+            {{name}},
+          {{/if}}
+        {{/foreach}}
+        </div>
+        -
+        <div class="post-carousel-card-datetime">
+          <time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+        </div>
+
+      </div>
+
+    </div>
+
+  </a>
+</div>

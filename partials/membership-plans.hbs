@@ -1,0 +1,67 @@
+<div class="container membership-plans">
+
+  <div class="row">
+    <div class="col text-center">
+      <h2>{{t "Membership Plans"}}</h2>
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    {{#if include-free}}
+    <div class="col membership-plan membership-plan-free">
+      <div class="membership-plan-header">
+        <h2 class="membership-plan-title">{{t "Free"}}</h2>
+        <h3 class="membership-plan-price">{{@price.currency_symbol}}0</h3>
+      </div>
+      <div class="membership-plan-content">
+        <ul>
+          <li>{{t "Access to subscriber posts"}}</li>
+          <li>{{t "Support independent publishing"}}</li>
+          <li>{{t "Simple, secure card payment"}}</li>
+        </ul>
+      </div>
+      <div class="membership-plan-footer">
+        <a href="#/portal/signup/free" class="btn btn-primary"><span>{{t "Sign up now"}}</span></a>
+      </div>
+    </div>
+    {{/if}}
+
+    <div class="col membership-plan membership-plan-monthly text-center">
+      <div class="membership-plan-header">
+        <h2 class="membership-plan-title">{{t "Monthly"}}</h2>
+        <h3 class="membership-plan-price">{{@price.currency_symbol}}{{@price.monthly}} <small>/ {{t "month"}}</small></h3>
+      </div>
+      <div class="membership-plan-content">
+        <ul>
+          <li>{{t "Full access to all private posts"}}</li>
+          <li>{{t "Regular updates with new content"}}</li>
+          <li>{{t "Support independent publishing"}}</li>
+          <li>{{t "Simple, secure card payment"}}</li>
+        </ul>
+      </div>
+      <div class="membership-plan-footer">
+        <a href="#/portal/signup/monthly" class="btn btn-primary" data-members-plan="Monthly"><span>{{t "Sign up now"}}</span></a>
+      </div>
+    </div>
+
+    <div class="col membership-plan membership-plan-yearly text-center">
+      <div class="membership-plan-header">
+        <h2 class="membership-plan-title">{{t "Yearly"}}</h2>
+        <h3 class="membership-plan-price">{{@price.currency_symbol}}{{@price.yearly}} <small>/ {{t "year"}}</small></h3>
+      </div>
+      <div class="membership-plan-content">
+        <ul>
+          <li>{{t "Full access to all private posts"}}</li>
+          <li>{{t "Regular updates with new content"}}</li>
+          <li>{{t "Support independent publishing"}}</li>
+          <li>{{t "Simple, secure card payment"}}</li>
+          <li>{{t "One easy payment instead of 12!"}}</li>
+        </ul>
+      </div>
+      <div class="membership-plan-footer">
+        <a href="#/portal/signup/yearly" class="btn btn-primary" data-members-plan="Yearly"><span>{{t "Sign up now"}}</span></a>
+      </div>
+    </div>
+
+  </div>
+</div>

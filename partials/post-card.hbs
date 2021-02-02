@@ -1,0 +1,57 @@
+<article id="post-{{id}}" class="{{post_class}} {{#unless feature_image}}no-image{{/unless}}">
+  <a class="post-card-image-link" href="{{url}}">
+    {{#if feature_image}}
+    {{!-- This is a responsive image, it loads different sizes depending on device
+    https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
+    <img class="post-card-image"
+        srcset="{{img_url feature_image size="s"}} 300w,
+                {{img_url feature_image size="m"}} 600w,
+                {{img_url feature_image size="l"}} 1000w,
+                {{img_url feature_image size="xl"}} 2000w"
+        {{#if @first}}
+        sizes="(max-width: 768px) 500px, (max-width: 992px) 700px, 1000px"
+        {{else}}
+        sizes="(max-width: 768px) 500px, (max-width: 992px) 350px, 500px"
+        {{/if}}
+        loading="lazy"
+        src="{{img_url feature_image size="m"}}"
+        alt="{{title}}"
+    />
+    {{else}}
+      <img class="post-card-image" src="//via.placeholder.com/600x500.png?text=Placeholder" />
+    {{/if}}
+  </a>
+
+  <header class="post-card-header">
+
+    {{#if primary_tag}}
+      {{#primary_tag}}
+      <div class="post-card-primary-tag"><a href="{{url}}">{{name}}</a></div>
+      {{/primary_tag}}
+    {{/if}}
+
+    <a class="post-card-image-link" href="{{url}}">
+      <h2 class="post-card-title">
+        {{title}}
+      </h2>
+    </a>
+
+    <div class="post-card-meta">
+      <span class="post-card-byline">{{t "by"}}
+        <span class="post-card-author">{{#has author="count:>2"}}Multiple authors{{else}}{{authors}}{{/has}}</span>
+      </span>-
+      <span class="post-card-byline-date"><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time> <span class="bull">&bull;</span> {{reading_time}}</span>
+    </div>
+
+  </header>
+
+  {{#if @first}}
+  <div class="post-card-content">
+    <p>{{excerpt words="30"}}</p>
+  </div>
+  <footer class="post-card-footer clearfix">
+    <a class="more-link" href="">{{t "Continue Reading"}}</a>
+  </footer>
+  {{/if}}
+
+</article>
