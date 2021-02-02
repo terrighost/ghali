@@ -1,0 +1,25 @@
+<div id="disqus_thread"></div>
+
+{{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
+{{#contentFor "scripts"}}
+<script>
+  var disqus_config = function () {
+    this.page.url = "{{url absolute="true"}}";
+    this.page.identifier = "ghost-{{comment_id}}"
+  };
+
+  function disqusComments(username) {  // REQUIRED CONFIGURATION VARIABLE: EDIT THE SHORTNAME BELOW
+    var d = document, s = d.createElement('script');
+
+    // IMPORTANT: Replace EXAMPLE with your forum shortname!
+    s.src = 'https://' + username + '.disqus.com/embed.js';
+
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+
+  if (typeof themeConfig.disqusUsername !== 'undefined' && themeConfig.disqusUsername != '' && $('body').hasClass('post-template')) {
+    disqusComments(themeConfig.disqusUsername);
+  }
+</script>
+{{/contentFor}}
