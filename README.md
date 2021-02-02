@@ -4,7 +4,7 @@ This free responsive multi-language theme is a Ghost port of one of the most pop
 
 &nbsp;
 
-![screenshot-desktop]()
+![screenshot-desktop](https://raw.githubusercontent.com/terrighost/ghali/main/assets/screenshot-desktop.png)
 
 &nbsp;
 
