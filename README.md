@@ -4,11 +4,14 @@ This free responsive multi-language theme is a Ghost port of one of the most pop
 
 &nbsp;
 
+[View DEMO](https://terrighost.github.io/)
+
+&nbsp;
+
 ![screenshot-desktop](https://raw.githubusercontent.com/terrighost/ghali/main/assets/screenshot-desktop.png)
 
 &nbsp;
 
-[View DEMO](https://terrighost.github.io/)
 
 # First time using a Ghost theme?
 
