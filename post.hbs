@@ -1,0 +1,203 @@
+{{!< default}}
+
+{{!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template --}}
+
+<header class="site-header">
+  {{> site-header}}
+</header>
+
+{{!-- Everything inside the #post tags pulls data from the post --}}
+{{#post}}
+
+{{!-- The main content area --}}
+<main id="site-main">
+  {{> header-background background=@site.cover_image}} {{!--Special header-image.hbs partial to generate the background image--}}
+    <div class="col mx-auto">
+
+      <p class="site-title">
+        <a href="{{@site.url}}">{{@site.title}}</a>
+      </p>
+
+    </div>
+  </div>
+
+  <div class="container clearfix">
+    <div class="row justify-content-center">
+  	   <div id="primary" class="content-area page-with-sidebar col-10">
+         <section>
+
+            <article class="post-full {{post_class}} {{#unless feature_image}}no-image{{/unless}}">
+
+              {{#if feature_image}}
+                <figure class="post-full-image">
+                  {{!-- This is a responsive image, it loads different sizes depending on device
+                  https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
+                  <img srcset="{{img_url feature_image size="s"}} 300w,
+                              {{img_url feature_image size="m"}} 600w,
+                              {{img_url feature_image size="l"}} 1000w,
+                              {{img_url feature_image size="xl"}} 2000w"
+                      sizes="(max-width: 800px) 400px,
+                          (max-width: 1170px) 800px,
+                              1200px"
+                      src="{{img_url feature_image size="l"}}"
+                      alt="{{title}}"
+                  />
+                </figure>
+              {{/if}}
+
+              <header class="post-full-header">
+
+                {{#if primary_tag}}
+                <section class="post-full-tags">
+                  {{#primary_tag}}
+                  <a href="{{url}}">{{name}}</a>
+                  {{/primary_tag}}
+                </section>
+                {{/if}}
+
+                <h1 class="post-full-title">{{title}}</h1>
+
+                <div class="post-full-byline">
+
+                  <section class="post-full-byline-content">
+
+                      <ul class="author-list">
+
+                        {{#foreach authors limit="1"}}
+                        <li class="author-list-item">
+
+                          {{#if profile_image}}
+                            <a href="{{url}}" class="author-avatar">
+                                <img class="author-profile-image" src="{{img_url profile_image size="xs"}}" alt="{{name}}" />
+                            </a>
+                          {{else}}
+                            <a href="{{url}}" class="author-avatar author-profile-image">{{> "icons/avatar"}}</a>
+                          {{/if}}
+
+                        </li>
+                        {{/foreach}}
+
+                      </ul>
+
+                      <section class="post-full-byline-meta">
+                        {{t "by"}} <h4 class="author-name">{{authors}}</h4>
+                        <div class="byline-meta-content">
+                          <time class="byline-meta-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time>
+                          <span class="byline-reading-time"><span class="bull">&bull;</span> {{reading_time}}</span>
+                        </div>
+                      </section>
+
+                  </section>
+
+                </div>
+
+                {{#if custom_excerpt}}
+                <p class="post-full-custom-excerpt">{{custom_excerpt}}</p>
+                {{/if}}
+
+              </header>
+
+
+              <section class="post-full-content">
+
+                <div class="post-content">
+                    {{content}}
+                </div>
+
+              </section>
+
+              {{!-- Email subscribe form at the bottom of the page --}}
+              {{#if @labs.members}}
+                {{#has visibility="public"}}
+                  {{> subscribe-form}}
+                {{/has}}
+              {{/if}}
+
+
+              <section class="post-full-comments">
+                  {{> comments}}
+              </section>
+
+
+            </article>
+
+          </section>
+
+        </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+{{!-- Links to Previous/Next posts --}}
+<aside class="read-next container clearfix">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="read-next-feed">
+
+        {{#if primary_tag}}
+        {{#get "posts" filter="tags:{{primary_tag.slug}}+id:-{{id}}" limit="3" as |related_posts|}}
+          {{#if related_posts}}
+            <article class="read-next-card">
+              <header class="read-next-card-header">
+                {{#../primary_tag}}
+                <span>{{t "More in <a href='{url}'>{name}" url=@url name=@name}}</a></span>
+                {{/../primary_tag}}
+              </header>
+              <div class="read-next-card-content">
+                <ul>
+                  {{#foreach related_posts}}
+                  <li>
+                    <h4><a href="{{url}}">{{title}}</a></h4>
+                    <div class="read-next-card-meta">
+                        <p><time datetime="{{date format="YYYY-MM-DD"}}">{{date format="D MMM YYYY"}}</time> – {{reading_time}}</p>
+                    </div>
+                  </li>
+                  {{/foreach}}
+                </ul>
+              </div>
+              <footer class="read-next-card-footer">
+                  <a class="btn btn-primary" href="{{#../primary_tag}}{{url}}{{/../primary_tag}}">{{plural meta.pagination.total empty='No posts' singular='% post' plural='See all % posts'}} →</a>
+              </footer>
+            </article>
+          {{/if}}
+        {{/get}}
+        {{/if}}
+
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      {{!-- If there's a next post, display it using the same markup included from - partials/post-card.hbs --}}
+      {{#next_post}}
+          {{> "post-card"}}
+      {{/next_post}}
+    </div>
+
+    <div class="col-md-4">
+      {{!-- If there's a previous post, display it using the same markup included from - partials/post-card.hbs --}}
+      {{#prev_post}}
+          {{> "post-card"}}
+      {{/prev_post}}
+    </div>
+
+  </div>
+
+</aside>
+
+{{/post}}
+
+{{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
+{{#contentFor "scripts"}}
+<script>
+  $(document).ready(function () {
+    // FitVids - start
+    var $postContent = $(".post-full-content");
+    $postContent.fitVids();
+    // FitVids - end
+  });
+</script>
+{{/contentFor}}

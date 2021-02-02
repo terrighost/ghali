@@ -1,0 +1,89 @@
+{{!< default}}
+{{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
+
+<header class="site-header">
+  {{> site-header}}
+</header>
+
+{{!-- Everything inside the #author tags pulls data from the author --}}
+{{#author}}
+
+<main id="site-main">
+  {{> header-background background=@site.cover_image}} {{!--Special header-image.hbs partial to generate the background image--}}
+    <div class="col mx-auto">
+
+      <p class="site-title">
+        <a href="{{@site.url}}">{{@site.title}}</a>
+      </p>
+
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col author-header text-center">
+
+      {{#if profile_image}}
+        <img class="author-profile-image"
+          srcset="{{img_url profile_image size="s"}} 100w,
+                  {{img_url profile_image size="m"}} 200w,
+                  {{img_url profile_image size="l"}} 300w,
+                  {{img_url profile_image size="xl"}} 450w"
+          sizes="(max-width: 768px) 200px, (max-width: 992px) 300px, 450px"
+          loading="lazy"
+          src="{{img_url profile_image size="m"}}"
+          alt="{{name}}"
+          />
+      {{/if}}
+
+      <h1 class="author-name">
+        {{name}}
+      </h1>
+
+      {{#if bio}}
+      <div class="author-bio">
+        {{bio}}
+      </div>
+      {{/if}}
+
+      <div class="author-meta">
+        {{#if location}}
+          <div class="author-location">{{location}}</div>
+        {{/if}}
+        {{#if website}}
+          <span class="author-social-link"><a href="{{website}}" target="_blank" rel="noopener">{{t "Website"}}</a></span>
+        {{/if}}
+        {{#if twitter}}
+          <span class="author-social-link"><a href="{{twitter_url}}" target="_blank" rel="noopener">Twitter</a></span>
+        {{/if}}
+        {{#if facebook}}
+          <span class="author-social-link"><a href="{{facebook_url}}" target="_blank" rel="noopener">Facebook</a></span>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+{{/author}}
+
+  {{!-- The main content area --}}
+  <div class="container clearfix">
+
+    <div class="row post-feed post-layout-columns-3">
+
+      {{#foreach posts}}
+        <div class="col-sm-6 col-md-4">
+          {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
+          {{> "post-card"}}
+        </div>
+      {{/foreach}}
+
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12 pagination-col">
+        {{pagination}}
+      </div>
+    </div>
+
+  </div>
+
+</main>

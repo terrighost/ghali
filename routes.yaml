@@ -1,0 +1,12 @@
+routes:
+  /signup/: members/signup
+  /account/: members/account
+
+collections:
+  /:
+    permalink: /{slug}/
+    template: index
+
+taxonomies:
+  tag: /tag/{slug}/
+  author: /author/{slug}/

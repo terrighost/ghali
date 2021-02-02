@@ -1,0 +1,74 @@
+{{!--
+This mimal error template is used for all 400/500 errors, except 404, which might occur on your site.
+--}}
+
+<!DOCTYPE html>
+<html lang="{{@site.lang}}">
+<head>
+
+  {{!-- Document Settings --}}
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  {{!-- Base Meta --}}
+  <title>{{meta_title}}</title>
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    a, a:hover {
+      color: #E64C7D;
+      text-decoration: none;
+    }
+
+    .h1 {
+      color: black;
+    }
+  </style>
+
+</head>
+<body class="{{body_class}}">
+
+  <header class="my-5 text-center">
+    <a class="h1" href="{{@site.url}}" style="font-family: Playfair Display;">{{@site.title}}</a>
+  </header>
+
+  <main>
+    <section class="text-center">
+      <h1>Error {{statusCode}}</h1>
+      <p>{{message}}</p>
+      <a href="{{@site.url}}">{{t "Go to the front page →"}}</a>
+    </section>
+
+    {{#if errorDetails}}
+    <section>
+      <h3>Theme errors</h3>
+      <ul>
+
+        {{#foreach errorDetails}}
+          <li>
+            <em>{{{rule}}}</em>
+
+            {{#foreach failures}}
+                <p>Ref: {{ref}}</p>
+                <p>Message: {{message}}</p>
+            {{/foreach}}
+
+          </li>
+        {{/foreach}}
+
+      </ul>
+    </section>
+    {{/if}}
+
+  </main>
+
+</body>
+</html>

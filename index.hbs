@@ -1,0 +1,178 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template --}}
+
+<header class="site-header sticky-top py-1">
+  {{> "site-nav"}}
+</header>
+
+{{!-- The main content area --}}
+<main>
+  {{> header-background background=@site.cover_image}} {{!--Special header-image.hbs partial to generate the background image--}}
+    <div class="col mx-auto">
+
+      <h1 class="site-title">
+        <a href="{{@site.url}}">{{@site.title}}</a>
+      </h1>
+
+    </div>
+  </div>
+
+
+{{!-- carousel --}}
+  <div class="ghali-carousel owl-carousel">
+    {{#get "posts" order="published_at asc"}}
+      {{#foreach posts visibility="all"}}
+
+        {{#if featured}}
+          {{!-- The tag below includes the markup for each post carousel item - partials/post-carousel-card.hbs --}}
+          {{> "post-carousel-card"}}
+
+          {{#if @last}}
+            {{#has number="1,2,3"}}
+              <div><img src="//via.placeholder.com/400x500.png?text=Set at least 4 featured posts" /></div>
+            {{/has}}
+          {{/if}}
+        {{/if}}
+
+      {{else}}
+        <div><img src="//via.placeholder.com/400x500.png?text=2Set at least 4 featured posts" /></div>
+      {{/foreach}}
+    {{/get}}
+  </div>
+
+{{!-- The #contentFor helper here will send everything inside it up to the matching #block helper found in default.hbs --}}
+{{#contentFor "scripts"}}
+  <script language="JavaScript" type="text/javascript">
+  $(document).ready(function(){
+    var owl = $('.owl-carousel');
+    owl.owlCarousel({
+        items:4,
+        loop:true,
+        nav:false,
+        dots:false,
+        margin:10,
+        autoplay:true,
+        autoplayTimeout:2500,
+        autoplayHoverPause:true,
+        responsiveClass:true,
+        responsive:{
+            0:{
+                items:2,
+                margin:5
+            },
+            768:{
+                items:3,
+                margin:10
+            },
+            1200:{
+                items:4
+            }
+        }
+    });
+  });
+  </script>
+{{/contentFor}}
+
+  {{!-- posts with sidebar --}}
+  <div class="container clearfix">
+    <div class="row">
+      <div id="primary" class="content-area page-with-sidebar col-md-8">
+        <section>
+          <div class="post-feed post-layout-columns-2">
+            {{#foreach posts visibility="all"}}
+
+              {{!-- First post is highlighted --}}
+              {{#if @first}}
+                <div class="row">
+                  <div class="col-md-12 post-card highlighted-post">
+              {{else}}
+                {{#has number="nth:2"}}
+                  <div class="row">
+                {{/has}}
+                <div class="col-sm-6 col-md-6 post-card">
+              {{/if}}
+
+              {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
+              {{> "post-card"}}
+
+              </div>
+
+              {{#if @first}}
+                </div>
+              {{else}}
+                {{#has number="nth:2"}}
+                {{else}}
+                  </div>
+                {{/has}}
+              {{/if}}
+
+            {{/foreach}}
+
+            <div class="row">
+              <div class="col-xs-12 pagination-col">
+                {{pagination}}
+              </div>
+            </div>
+
+          </div>
+        </section>
+      </div>
+
+      <aside id="secondary" class="col-md-4">
+        <div class="sidebar">
+
+          <section id="sidebar-about" class="sidebar-module">
+            <h2 class="module-title"><span>{{t "About"}}</span></h2>
+            <div class="about-wrap">
+
+              {{#if @site.logo}}
+      				<div class="site-logo">
+      					<img src="{{img_url @site.logo size="s"}}" alt="{{@site.title}}" width="200" height="200" />
+              </div>
+              {{/if}}
+
+      				<h4 class="site-title">{{@site.title}}</h4>
+      				<p class="site-description">{{@site.description}}</p>
+
+      			</div>
+      		</section>
+
+          <section id="sidebar-tags" class="sidebar-module">
+            <h2 class="module-title"><span>{{t "Explore Tags"}}</span></h2>
+
+            {{#get "tags" limit="all" include='count.posts' order='count.posts desc'}}
+            {{#if tags}}
+            <div class="tags">
+              <ul>
+              {{#foreach tags}}
+                <li>
+                  <a href="{{url}}" title="{{name}}" class="tag tag-{{id}} {{slug}}">
+                    <div class="tag-name">{{name}}</div>
+                    <div class="tag-count">{{count.posts}}</div>
+                  </a>
+                </li>
+              {{/foreach}}
+              </ul>
+            </div>
+            {{/if}}
+            {{/get}}
+
+          </section>
+
+          {{#if @labs.members}}
+          {{#unless @member}}
+          <section id="sidebar-subscribe" class="sidebar-module">
+            <h2 class="module-title"><span>{{t "Sign Up"}}</span></h2>
+              <p>{{t "Get the latest posts delivered right to your inbox and enjoy other member priviledges"}}</p>
+              <a href="#/portal/signup" class="btn btn-primary">{{t "Sign Up"}}</a>
+          </section>
+          {{/unless}}
+          {{/if}}
+
+        </div>
+      </aside>
+    </div>
+  </div>
+
+</main>
