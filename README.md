@@ -46,7 +46,7 @@ This theme has lots of code comments to help explain what's going on just by rea
 
 # Installation
 
-1. In the Ghost backend go to `Settings > Design` and click on `Upload a theme` under `Installed Themes`. Upload the latest Ghali release zip-file and click on `activate`.
+1. In the Ghost backend go to `Settings > Design` and click on `Upload a theme` under `Installed Themes`. Upload the [latest Ghali release](https://github.com/TerriGhost/Ghali/releases) zip-file and click on `activate`.
 2. Complete the setup by following these steps:
   * The picture in the "About" section on the homepage is set under `Settings > General`, in the `Publication Identity` section you can set the `Publication logo`
   * Create `API keys` for the search function.
