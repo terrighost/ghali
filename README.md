@@ -84,7 +84,7 @@ This theme has lots of code comments to help explain what's going on just by rea
   * Configure the routing to the custom member pages
     * Go to `Setting > Labs`
     * Click on the `Upload routes YAML` button in the `Beta Features` section
-    * Upload the `routes.yaml` file from this repository
+    * Upload the [`routes.yaml`](https://github.com/terrighost/ghali/blob/main/routes.yaml) file from this repository
 
 # Development
 
