@@ -144,7 +144,7 @@ into the {body} of the default.hbs template --}}
             <article class="read-next-card">
               <header class="read-next-card-header">
                 {{#../primary_tag}}
-                <span>{{t "More in <a href='{url}'>{name}" url=@url name=@name}}</a></span>
+                <span>{{{t "More in <a href='{url}'>" url=(url)}}} {{name}}</a></span>
                 {{/../primary_tag}}
               </header>
               <div class="read-next-card-content">
