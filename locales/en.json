@@ -55,4 +55,6 @@
 
   "About": "About",
   "Explore Tags": "Explore Tags",
+
+  "More in <a href='{url}'>": "More in <a href='{url}'>"
 }
