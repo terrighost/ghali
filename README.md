@@ -1,8 +1,8 @@
 # Ghali
 
-This free responsive multi-language theme is a Ghost port of one of the most popular fashion templates for Wordpress: Cali. It supports all the latest features of Ghali, including members and language files. It comes with a carousel, amazing typography and membership pages. Search and Disqus comments are ready to go and easily configured. Bootstrap and strict coding hygiene make customizations a breeze. Head over to the [releases](https://github.com/TerriGhost/Ghali/releases) page for the latest version.
+Ghali is a free responsive multi-language theme for Ghost. It is based on one of the most popular fashion templates for Wordpress: Cali. It supports all the latest features of Ghost v3, including members and language files. It comes with a carousel, amazing typography and membership pages. Search and Disqus comments are ready to go and easily configured. Bootstrap and strict coding hygiene make customizations a breeze. Head over to the [releases](https://github.com/TerriGhost/Ghali/releases) page for the latest version.
 
-[View DEMO](https://terrighost.github.io/)
+[View DEMO](https://terrighost.github.io/ghali)
 
 &nbsp;
 
@@ -46,14 +46,14 @@ This theme has lots of code comments to help explain what's going on just by rea
 
 # Installation
 
-1. In the Ghost backend go to SETTINGS > Design and click on "Upload a theme" under "INSTALLED THEMES". Upload Ghali.zip and click on "ACTIVATE"
-2. Setup the following:
-  * The picture in the "About" section on the homepage is set under SETTINGS > General > PUBLICATION IDENTITY > Publication logo
-  * Create API keys for the search function.
-    * Go to SETTINGS > Integrations > CUSTOM INTEGRATIONS and click on "+ Add custom integration"
-    * Choose a name, f.e. "Search", and click on "Create"
-    * Copy the "Content API Key" and "API URL" in to the corresponding configuration fields below
-  * Configure the theme by copying the following code in SETTINGS > Code Injection > Site Header
+1. In the Ghost backend go to `Settings > Design` and click on `Upload a theme` under `Installed Themes`. Upload the latest Ghali release zip-file and click on `activate`.
+2. Complete the setup by following these steps:
+  * The picture in the "About" section on the homepage is set under `Settings > General`, in the `Publication Identity` section you can set the `Publication logo`
+  * Create `API keys` for the search function.
+    * Go to `Settings > Integrations`, head to the `Custom Integrations` section and click on `+ Add custom integration`
+    * Choose a name, f.e. "Search", and click on `Create`
+    * Copy the `Content API Key` and `API URL` in to the corresponding configuration fields below
+  * Configure the theme by copying the following code in `Settings > Code Injection` in the `Site Header` area
 
 ```js
 <script>
@@ -77,13 +77,13 @@ This theme has lots of code comments to help explain what's going on just by rea
 </script>
 ```
 
-  * Set the accent color of Portal to #ee4073
-    * Go to SETTINGS > Labs > Members
-    * Click on the "Customize" button in the Portal Settings section
-    * Set the Accent Color under LOOK & FEEL to "ee4073"
-  * Enable the custom member pages
-    * Go to SETTINGS > Labs
-    * Click on the "Upload routes YAML" button in the BETA FEATURES section
+  * Set the accent color of Portal to `#ee4073`
+    * Go to `Settings > Labs` and click on `Members`
+    * Click on the `Customize` button in the `Portal Settings` section
+    * Set the `Accent Color` under `Look & Feel` to `ee4073`
+  * Configure the routing to the custom member pages
+    * Go to `Setting > Labs`
+    * Click on the `Upload routes YAML` button in the `Beta Features` section
     * Upload the `routes.yaml` file from this repository
 
 # Development
